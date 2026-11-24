@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#102a43" />
+    <meta name="description" content="A 100-question HSK 1 translation and word-order game for Emile." />
+    <title>Emile's HSK 1 Fries Challenge</title>
+    <link rel="preload" href="assets/belgian-fries-hero.webp" as="image" type="image/webp" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="welcome-screen" id="welcomeScreen" aria-labelledby="welcomeTitle">
+      <div class="welcome-overlay"></div>
+      <div class="welcome-content">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> HSK 1 SENTENCE LAB</div>
+        <h1 id="welcomeTitle">Welcome,<br />Emile!</h1>
+        <p class="welcome-copy">Build 100 Chinese sentences, one tile at a time.</p>
+        <div class="welcome-rule"></div>
+        <p class="welcome-instruction">Read the English sentence. Drag the Chinese word tiles into the correct order. Three extra tiles are waiting to trick you.</p>
+        <button class="primary-button start-button" id="startButton" type="button">Start the challenge</button>
+        <p class="welcome-meta">Simplified Chinese · Hanzi above pinyin · Lessons 1-15</p>
+      </div>
+    </section>
+
+    <main class="game-screen" id="gameScreen" hidden>
+      <header class="topbar">
+        <div class="brand-lockup">
+          <span class="fries-mark" aria-hidden="true">薯</span>
+          <div>
+            <strong>Emile's HSK 1</strong>
+            <span>Fries Challenge</span>
+          </div>
+        </div>
+        <div class="top-stats" aria-label="Game statistics">
+          <div class="stat"><span>Score</span><strong id="scoreValue">0</strong></div>
+          <div class="stat"><span>Streak</span><strong id="streakValue">0</strong></div>
+          <button class="icon-button" id="restartButton" type="button" aria-label="Restart the game" title="Restart">↻</button>
+        </div>
+      </header>
+
+      <div class="progress-wrap" aria-label="Question progress">
+        <div class="progress-labels">
+          <span id="progressText">Question 1 of 100</span>
+          <span id="accuracyText">0 correct</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <section class="challenge-card" aria-labelledby="promptHeading">
+        <div class="question-meta">
+          <span class="lesson-chip" id="lessonChip">Lesson 3</span>
+          <span class="pattern-chip" id="patternChip">Basic word order</span>
+          <span class="attempt-chip" id="attemptChip">3 tries left</span>
+        </div>
+
+        <div class="prompt-block">
+          <p class="prompt-label">TRANSLATE INTO CHINESE</p>
+          <h2 id="promptHeading">He reads books.</h2>
+        </div>
+
+        <div class="answer-section">
+          <div class="section-label-row">
+            <label for="answerLane">Your sentence</label>
+            <span>Drag or tap tiles to move them</span>
+          </div>
+          <div class="drop-zone answer-lane" id="answerLane" role="group" aria-label="Your sentence tiles">
+            <p class="zone-placeholder" id="answerPlaceholder">Drop tiles here in the correct order</p>
+          </div>
+        </div>
+
+        <div class="word-bank-section">
+          <div class="section-label-row">
+            <label for="wordBank">Word bank</label>
+            <span>3 tiles are extra</span>
+          </div>
+          <div class="drop-zone word-bank" id="wordBank" role="group" aria-label="Available word tiles"></div>
+        </div>
+
+        <div class="feedback-panel" id="feedbackPanel" aria-live="polite">
+          <div class="feedback-icon" id="feedbackIcon" aria-hidden="true">·</div>
+          <div>
+            <strong id="feedbackTitle">Build your sentence</strong>
+            <p id="feedbackMessage">Choose only the words you need.</p>
+          </div>
+        </div>
+
+        <div class="answer-reveal" id="answerReveal" hidden>
+          <span>Correct answer</span>
+          <strong id="revealHanzi"></strong>
+          <p id="revealPinyin"></p>
+        </div>
+
+        <div class="game-actions">
+          <button class="secondary-button" id="resetButton" type="button">Reset tiles</button>
+          <button class="primary-button" id="checkButton" type="button">Check answer</button>
+          <button class="primary-button next-button" id="nextButton" type="button" hidden>Next question</button>
+        </div>
+      </section>
+
+      <footer class="game-footer">Made for Emile · Based on HSK Standard Course 1</footer>
+    </main>
+
+    <dialog class="finish-dialog" id="finishDialog">
+      <div class="finish-badge" aria-hidden="true">✓</div>
+      <p class="prompt-label">CHALLENGE COMPLETE</p>
+      <h2>Excellent work, Emile!</h2>
+      <p id="finishSummary">You completed all 100 sentences.</p>
+      <div class="finish-score-grid">
+        <div><span>Correct</span><strong id="finishCorrect">0</strong></div>
+        <div><span>Best streak</span><strong id="finishStreak">0</strong></div>
+      </div>
+      <button class="primary-button" id="playAgainButton" type="button">Play again</button>
+    </dialog>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
